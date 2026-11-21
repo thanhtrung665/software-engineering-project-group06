@@ -10,7 +10,7 @@ Python (OOP, kiến trúc 3 tầng) · FastAPI · SQLAlchemy · **MySQL 8.4** ·
 | Source code (.py) | [`source_code/hotel_booking_room/`](source_code/hotel_booking_room/) (backend) · [`source_code/frontend/`](source_code/frontend/) (giao diện, TypeScript) |
 | Testing document | [`Testing_Document_Group06.xlsx`](Testing_Document_Group06.xlsx) |
 | Docker file | [`source_code/hotel_booking_room/Dockerfile`](source_code/hotel_booking_room/Dockerfile), [`source_code/frontend/Dockerfile`](source_code/frontend/Dockerfile) và [`docker-compose.yml`](source_code/hotel_booking_room/docker-compose.yml) |
-| Minh chứng sử dụng công cụ & phân công | [`evidence/PhanCongNhom.png`](evidence/PhanCongNhom.png) (bảng phân công Stage 3–4) và [`evidence/Tool_Usage_and_Task_Assignment_Group06.xlsx`](evidence/Tool_Usage_and_Task_Assignment_Group06.xlsx) (phân công, đóng góp theo Git, công cụ, lịch sử commit) |
+| Minh chứng sử dụng công cụ & phân công | [`evidence/PhanCongNhom.png`](evidence/PhanCongNhom.png) (bảng phân công Stage 3–4) và [`evidence/Tool_Usage_and_Task_Assignment_Group06.xlsx`](evidence/Tool_Usage_and_Task_Assignment_Group06.xlsx) (phân công, đóng góp theo Git, công cụ, lịch sử commit), ảnh chụp trong [`evidence/screenshots/`](evidence/screenshots/) |
 
 ```
 ProgAndTest_Group06/
@@ -18,7 +18,8 @@ ProgAndTest_Group06/
 ├── Testing_Document_Group06.xlsx      Test Cases · Test Data · Test Execution
 ├── evidence/
 │   ├── PhanCongNhom.png
-│   └── Tool_Usage_and_Task_Assignment_Group06.xlsx
+│   ├── Tool_Usage_and_Task_Assignment_Group06.xlsx
+│   └── screenshots/                   giao diện, Swagger UI, kết quả test
 └── source_code/
     ├── frontend/                      Next.js 16 · React 19: trang chủ, danh sách phòng (+ Dockerfile)
     └── hotel_booking_room/
@@ -71,3 +72,15 @@ npm run test:e2e                                       # 16 test giao diện tr�
 
 Kết quả lần chạy ngày 2026-11-21 (Python 3.12.7): **106 test case – 103 Pass, 0 Fail, 3 chưa chạy**
 (90 backend + 16 frontend; 3 test tích hợp cần MySQL thật trong Docker). Chi tiết ở sheet *Test Execution* trong Testing Document.
+
+## Ảnh minh chứng (`evidence/screenshots/`)
+
+| Ảnh | Nội dung |
+|---|---|
+| `01_frontend_home.png` | Trang chủ frontend |
+| `02_frontend_rooms.png` | Trang danh sách loại phòng, dữ liệu lấy từ API Python |
+| `03_api_swagger.png` | Swagger UI – 12 API (health, room-types, bookings, payments, front-desk) |
+| `04_backend_tests_pytest.png` | Kết quả `pytest -v`: 87 passed, 3 skipped |
+| `05_frontend_tests_playwright.png` | Kết quả Playwright: 16 passed |
+
+Ảnh 01–03 chụp ngày 2026-11-21 với API chạy dữ liệu mẫu của bộ test (SQLite), không phải MySQL.
