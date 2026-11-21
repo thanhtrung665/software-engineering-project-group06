@@ -18,6 +18,7 @@ Repo này tổng hợp toàn bộ tài liệu, sơ đồ và mã nguồn của n
 │   ├── use_case/                 Đặc tả use case (bản gốc + 2 bản bổ sung), mô tả sơ đồ use case
 │   ├── data_design/              Thiết kế dữ liệu
 │   ├── dataflow/                 Mô tả sơ đồ luồng dữ liệu (DFD)
+│   ├── testing/                  Template Testing Document
 │   └── interface_design/         Interface Design Description
 │
 ├── diagrams/                     Sơ đồ (draw.io / PDF / ảnh)
@@ -26,9 +27,11 @@ Repo này tổng hợp toàn bộ tài liệu, sơ đồ và mã nguồn của n
 │   ├── dataflow_diagram/         DFD mức 0, mức 1, mức 2 (đặt phòng, thanh toán, quản lý đơn, đánh giá, quản trị)
 │   └── class_diagram/            Sơ đồ lớp
 │
-└── src/                          Mã nguồn (Python, kiến trúc 3 tầng)
-    ├── hotel_booking_room/       FastAPI + SQLAlchemy + SQL Server, cấu hình Docker
-    └── hotel_booking_frontdesk/  Nghiệp vụ lễ tân: check-in, check-out, no-show (MySQL, CLI)
+└── ProgAndTest_Group06/          Bài nộp Programming & Testing
+    ├── source_code/
+    │   └── hotel_booking_room/   Python OOP · FastAPI · SQLAlchemy · MySQL 8.4 · Docker
+    ├── Testing_Document_Group06.xlsx
+    └── evidence/                 Minh chứng sử dụng công cụ & phân công
 ```
 
 ## Tài liệu & sơ đồ
@@ -50,37 +53,23 @@ View Reports & Statistics, Overview.
 
 ## Mã nguồn
 
-### `src/hotel_booking_room` – Backend chính
+Toàn bộ phần Programming & Testing nằm trong [`ProgAndTest_Group06/`](ProgAndTest_Group06/README.md).
 
-Python · FastAPI · SQLAlchemy · SQL Server 2022. Ba tầng `presentation → business → data_access`,
-quy tắc phụ thuộc được kiểm tra bởi `tests/test_architecture.py`.
+### `ProgAndTest_Group06/source_code/hotel_booking_room`
 
-```bash
-cd src/hotel_booking_room
-cp .env.example .env              # đặt DB_PASSWORD
-docker compose up -d              # SQL Server + app (http://localhost:8000/docs)
-# hoặc chạy local:
-python -m venv .venv && pip install -r requirements.txt
-python -m scripts.init_db && python -m scripts.seed
-uvicorn app.main:app --reload
-pytest                            # dùng SQLite in-memory
-```
-
-Chi tiết: [`src/hotel_booking_room/README.md`](src/hotel_booking_room/README.md)
-
-### `src/hotel_booking_frontdesk` – Nghiệp vụ lễ tân
-
-`business/frontdesk_service.py` (check-in, check-out, no-show), quy tắc thuần trong `frontdesk_rules.py`.
+Python hướng đối tượng · FastAPI · SQLAlchemy · MySQL 8.4. Ba tầng `presentation → business → data_access`
+(kiểm tra bởi `tests/test_architecture.py`), cùng các module `frontdesk` (lễ tân) và `payments` (VNPay).
 
 ```bash
-cd src/hotel_booking_frontdesk
-pip install -r requirements.txt
-python -m unittest discover -s tests -v
+cd ProgAndTest_Group06/source_code/hotel_booking_room
+cp .env.example .env                                # đặt DB_PASSWORD, MYSQL_ROOT_PASSWORD
+docker compose up -d --build                        # MySQL + API (http://localhost:8000/docs)
+docker compose exec app python -m scripts.init_db   # schema 40 bảng
+docker compose exec app python -m scripts.seed
+pytest                                              # SQLite in-memory, không cần MySQL
 ```
 
-Chi tiết: [`src/hotel_booking_frontdesk/README.md`](src/hotel_booking_frontdesk/README.md)
-
-> Hai module hiện dùng hệ quản trị CSDL khác nhau (SQL Server và MySQL); cần thống nhất khi tích hợp.
+Chi tiết: [`ProgAndTest_Group06/source_code/hotel_booking_room/README.md`](ProgAndTest_Group06/source_code/hotel_booking_room/README.md)
 
 ## Thành viên đóng góp
 

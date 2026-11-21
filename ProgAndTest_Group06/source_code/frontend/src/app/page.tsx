@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function Home(){return <main className="hero"><nav><strong>HOTEL BOOKING</strong><Link href="/rooms">Danh sách phòng</Link></nav><section><p className="eyebrow">ĐẶT PHÒNG TRỰC TUYẾN</p><h1>Trải nghiệm kỳ nghỉ<br/>theo cách của bạn.</h1><p>Khám phá phòng nghỉ, xem thông tin và lựa chọn kỳ lưu trú phù hợp.</p><Link className="button" href="/rooms">Khám phá phòng</Link></section></main>}
